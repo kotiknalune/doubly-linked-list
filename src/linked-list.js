@@ -4,10 +4,8 @@ class LinkedList {
     constructor() {
         this.length = 0;
     }
-
     appends(data) {
         var node = new Node(data);
-
         if(this.length === 0) {
             this.starts = node;
             this.ends = node;
@@ -18,35 +16,27 @@ class LinkedList {
         }
 
         this.length++;
-
         return this;
     }
-
     head() {
         return this.starts.data;
     }
-
     tail() {
         return this.ends.data;
     }
-
     at(index) {
         var currentNode = this.starts,
             count = 0;
-
         while(count < index) {
             currentNode = currentNode.next;
             count++;
         }
-
         return currentNode.data;
     }
-
     insertAt(index, data) {
         var node = new Node(data),
             currentNode = this.starts,
             count = 0;
-
         if(index === 0) {
             this.starts = node;
         } else {
@@ -58,7 +48,6 @@ class LinkedList {
         }
         return this;
     }
-
     isEmpty() {
         if(this.length === 0) {
             return true;
@@ -66,7 +55,6 @@ class LinkedList {
             return false;
         }
     }
-
     clear() {
         this.starts.data = null;
         this.ends.data = null;
@@ -74,7 +62,6 @@ class LinkedList {
 
         return this;
     }
-
     deleteAt(index) {
         var currentNode = this.starts,
             count = 0,
@@ -85,7 +72,6 @@ class LinkedList {
         if(length === 0 || index < 0 || index > length) {
             throw "Error";
         }
-
         if(index === 0) {
             if(this.starts.next != null) {
                 this.starts = currentNode.next;
@@ -99,8 +85,6 @@ class LinkedList {
                 this.ends.data = null;
             }
 
-
-
         } else if(index === this.length) {
             this.ends = this.ends.prev;
             this.ends.next = null;
@@ -109,24 +93,18 @@ class LinkedList {
                 currentNode = currentNode.next;
                 count++;
             }
-
             prevIsDeleted = currentNode.prev;
             nextIsDeleted = currentNode.next;
-
             prevIsDeleted.next = nextIsDeleted;
             nextIsDeleted.prev = prevIsDeleted;
             currentNode = null;
         }
-
         this.length--;
-
         return this;
     }
-
     reverse() {
         var firstCurrentNode = this.starts,
             secondCurrentNode = this.ends;
-
         for(var i = 0; i < this.length/2; i++) {
                 var t = firstCurrentNode.data;
                 firstCurrentNode.data = secondCurrentNode.data;
@@ -135,13 +113,10 @@ class LinkedList {
             firstCurrentNode = firstCurrentNode.next;
             secondCurrentNode = secondCurrentNode.prev;
         }
-
         return this;
     }
-
     indexOf(data) {
-        var currentNode = this.starts;
-        
+        var currentNode = this.starts;    
         for(var i = 0; i < this.length; i++) {
             if(currentNode.data === data) {
                 return i;
@@ -149,9 +124,7 @@ class LinkedList {
                 currentNode = currentNode.next;
             }
         }
-
         return -1;
     }
 }
-
 module.exports = LinkedList;
